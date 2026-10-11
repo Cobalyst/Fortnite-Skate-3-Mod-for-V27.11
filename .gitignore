@@ -1,0 +1,18 @@
+# build output
+obj/
+target/
+bin/*.dll
+bin/*.exe
+bin/*.pdb
+# generated from the game, never commit
+SDK/
+# made by the setup program from the player's Skate 3
+skate-data/*
+!skate-data/settings/
+!skate-data/sounds/
+!skate-data/hud/
+setup/python/
+setup/vgmstream/
+setup/skate-convert/
+__pycache__/
+*.log

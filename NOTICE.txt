@@ -1,0 +1,57 @@
+FN Skate 3 - Skate 3's skating in Fortnite (v27.11)
+==================================================
+
+This mod is licensed under the Apache License, Version 2.0 (see LICENSE.txt), except for the
+third-party parts listed below, which keep their own licences.
+
+Unofficial fan project. Not affiliated with, endorsed by or supported by Epic Games or Electronic Arts.
+Fortnite is a trademark of Epic Games. Skate and Skate 3 are trademarks of Electronic Arts. All game
+content belongs to its owners.
+
+--------------------------------------------------------------------------------
+Game content
+--------------------------------------------------------------------------------
+No Fortnite or Skate 3 files are included in this mod. The setup program builds the Skate 3 data the
+mod uses from the player's own copy of Skate 3, on the player's own PC. Fortnite itself is never
+modified on disk.
+
+--------------------------------------------------------------------------------
+Third-party code in the mod (bin\)
+--------------------------------------------------------------------------------
+Skate engine (bin\skate_engine.dll)
+  Built from the skate crates of the "2010 Rust Rewrite Mashup" project
+  (https://github.com/chasmlol/2010-rust-rewrite-mashup), which took them from
+  SK8-ENGINE/skate-3-rust-engine (revision cb79689), with this mod's changes.
+  The Mashup project is licensed under the Apache License, Version 2.0, and builds on IW4L
+  (Copyright 2026 vladtrc, https://github.com/vladtrc/iw4L, Apache License 2.0).
+  See setup\skate-convert\LICENSE-IW4L.txt and setup\skate-convert\NOTICE-IW4L.txt.
+  Its Rust dependencies (serde, serde_json and others) are used under their MIT / Apache-2.0 licences.
+
+MinHook (inside bin\SkateMod.dll)
+  Copyright (C) 2009-2017 Tsuda Kageyu. BSD 2-Clause licence: licenses\MinHook.txt
+
+miniaudio (inside bin\SkateMod.dll)
+  By David Reid. Public domain (Unlicense) or MIT No Attribution: licenses\miniaudio.txt
+
+References read during development (nothing of theirs is included): OpenSAGE (the APT ActionScript
+opcode set), Xenia (Xbox 360 tiled texture addressing), vgmstream (EA audio formats), Ghidra.
+
+--------------------------------------------------------------------------------
+Third-party programs used by the setup (setup\)
+--------------------------------------------------------------------------------
+Python 3.9.13 embeddable package (setup\python)
+  Copyright (c) 2001-2022 Python Software Foundation. PSF License: setup\python\LICENSE.txt
+
+NumPy 2.0.2 (setup\python\Lib\site-packages\numpy)
+  Copyright (c) 2005-2024 NumPy Developers. BSD 3-Clause licence, with the licences of its bundled
+  libraries: setup\python\Lib\site-packages\numpy-2.0.2.dist-info\LICENSE.txt
+
+vgmstream (setup\vgmstream)
+  Copyright (c) 2008-2025 Adam Gashlin, Fastelbja, Ronny Elfert, bnnm and others. ISC-style licence:
+  setup\vgmstream\COPYING. Its DLLs (FFmpeg, mpg123, libvorbis, speex, celt, atrac9, g719) are used
+  under their own licences (LGPL for FFmpeg and mpg123), unmodified.
+
+iw4l-skate-convert (setup\skate-convert)
+  From the 2010 Rust Rewrite Mashup / IW4L release, unmodified. Apache License 2.0
+  (setup\skate-convert\LICENSE-IW4L.txt, NOTICE-IW4L.txt); the libraries it contains are listed in
+  setup\skate-convert\licenses.

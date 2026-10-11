@@ -1,0 +1,9 @@
+# Skate 3 grain rolling tuning per rolling surface (tools/export_rolling_surfaces.py)
+# roll <surface> <file> div maxw p0 p1 p2 p3 | A S R W T | A S R W T | kick0 kick1 kickdiv rise hold fall | rattlediv up down
+roll 1 asphalt_rough_hard.grain 65 0.8 1 0.706896 0.258621 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06
+roll 2 concrete_rough_hard.grain 60 0.6 1 0.913793 0.0344828 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06
+roll 3 asphalt_smooth_hard.grain 65 0.8 1 0.827586 0.0517241 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06
+roll 4 concrete_smooth_hard.grain 65 1 1 0.706896 -0.0517241 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06
+roll 5 wood_ramp_hard.grain 65 0.8 1 0.706896 0.362069 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06
+roll 6 concrete_aggregate_hard.grain 65 0.3 1 0.482759 0.534483 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.1 0.1
+roll 9 metal_smooth_hard.grain 55 0.45 1 1.05172 0.0689655 0 | 0.1 0.2 0.1 1.6 0.05 | 0.2 0.1 0.2 1.5 0.05 | 1.4 1.1 45 35 200 600 | 30 0.06 0.06

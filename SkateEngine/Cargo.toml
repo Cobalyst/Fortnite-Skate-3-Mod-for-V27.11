@@ -1,0 +1,23 @@
+[package]
+name = "skate_engine"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Skate 3 engine (SK8-ENGINE via IW4L) behind a C ABI for the Fortnite 27.11 skate mod"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+skate-host = { path = "../third_party/skate/crates/skate-host" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+half = "2.7.1"
+glam = "=0.32.1"
+
+[profile.release]
+debug = 1
+panic = "unwind"
+
+[profile.dev]
+opt-level = 1

@@ -1,0 +1,38 @@
+# Skate mod settings. Change a value, then leave and re-enter skate mode (J) for it to apply.
+# 1 = on, 0 = off.
+
+
+# Solid walls (mod addition, OFF = Skate 3's own collision): rocks, cliffs and walls taller than
+# the skater block the board, and ground found above the skater is made solid. Turning it on stops
+# under-the-map glitches such as superdude, so it is off.
+solid_walls 0
+
+# Hall of Meat: Skate 3's bail mode (without its slow motion). Also toggled with H in skate mode.
+hall_of_meat 1
+
+# Bail controls: while bailing, the arrow keys pick Skate 3's bail pose (only while held; every
+# other key does exactly what it does while riding). 0 = off.
+bail_controls 1
+
+# Hall of Meat x-ray skeleton (Skate 3's dem_bones) over the skater. 0 = off.
+xray 1
+
+# Show grind spots: draws a yellow line on every grindable edge the mod found around you. 0 = off.
+show_rails 0
+
+# Multi body flips: front / back flips of the whole skater keep rotating while held, like on
+# Normal / Hardcore, instead of Easy's single flip. Nothing else about Easy changes. Also toggled with N.
+multi_body_flips 0
+
+# On-foot D-pad gestures (Skate 3 lets you pick four). Numbers:
+#  0 Air Guitar  1 Airplane  2 Boxing  3 Bruce Lee  4 Check Time  5 Devil  6 Double Gun  7 Dunno
+#  8 Finger Wag  9 Fists  10 Bicep Flex  11 Flip Table  12 Fonz "Eh"  13 Freedom  14 Fist
+#  15 Getaway  16 Get Outta Here  17 Handcuffs  18 High Pump  19 Low Pump  20 Prewind  21 Peace
+#  22 Point  23 Raise The Roof  24 Shaka  25 Shrug  26 Point To Sky  27 Snap  28 Soul Arch
+#  29 Spock  30 Surf's Up  31 Swing High  32 Swing Low  33 Throw Arms  34 Thumbs Down  35 Wings
+#  36 Yard Sale
+gesture_up 21
+gesture_down 7
+gesture_left 0
+gesture_right 24
+board_wrap 1

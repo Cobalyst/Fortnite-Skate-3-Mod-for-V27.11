@@ -1,0 +1,230 @@
+{
+ "GRINDS_10.wav": {
+  "bank": "extracted/audio/GRINDS.abk",
+  "stream": 10
+ },
+ "GRINDS_52.wav": {
+  "bank": "extracted/audio/GRINDS.abk",
+  "stream": 52
+ },
+ "GRINDS_53.wav": {
+  "bank": "extracted/audio/GRINDS.abk",
+  "stream": 53
+ },
+ "GRINDS_80.wav": {
+  "bank": "extracted/audio/GRINDS.abk",
+  "stream": 80
+ },
+ "PatchBank_Rolling_Surfaces_2.wav": {
+  "bank": "extracted/audio/PatchBank_Rolling_Surfaces.abk",
+  "stream": 2
+ },
+ "PatchBank_Rolling_Surfaces_3.wav": {
+  "bank": "extracted/audio/PatchBank_Rolling_Surfaces.abk",
+  "stream": 3
+ },
+ "PatchBank_Rolling_Surfaces_5.wav": {
+  "bank": "extracted/audio/PatchBank_Rolling_Surfaces.abk",
+  "stream": 5
+ },
+ "Rolling_Rattles_10.wav": {
+  "bank": "extracted/audio/Rolling_Rattles.abk",
+  "stream": 10
+ },
+ "Rolling_Rattles_13.wav": {
+  "bank": "extracted/audio/Rolling_Rattles.abk",
+  "stream": 13
+ },
+ "Rolling_Rattles_14.wav": {
+  "bank": "extracted/audio/Rolling_Rattles.abk",
+  "stream": 14
+ },
+ "Seams_Bank_10.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 10
+ },
+ "Seams_Bank_180.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 180
+ },
+ "Seams_Bank_181.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 181
+ },
+ "Seams_Bank_182.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 182
+ },
+ "Seams_Bank_183.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 183
+ },
+ "Seams_Bank_186.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 186
+ },
+ "Seams_Bank_19.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 19
+ },
+ "Seams_Bank_191.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 191
+ },
+ "Seams_Bank_194.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 194
+ },
+ "Seams_Bank_195.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 195
+ },
+ "Seams_Bank_198.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 198
+ },
+ "Seams_Bank_203.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 203
+ },
+ "Seams_Bank_204.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 204
+ },
+ "Seams_Bank_205.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 205
+ },
+ "Seams_Bank_206.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 206
+ },
+ "Seams_Bank_207.wav": {
+  "bank": "extracted/audio/Seams_Bank.abk",
+  "stream": 207
+ },
+ "Sk8_Air_Flip_Tricks_11.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 11
+ },
+ "Sk8_Air_Flip_Tricks_12.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 12
+ },
+ "Sk8_Air_Flip_Tricks_14.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 14
+ },
+ "Sk8_Air_Flip_Tricks_15.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 15
+ },
+ "Sk8_Air_Flip_Tricks_16.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 16
+ },
+ "Sk8_Air_Flip_Tricks_17.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 17
+ },
+ "Sk8_Air_Flip_Tricks_7.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 7
+ },
+ "Sk8_Air_Flip_Tricks_8.wav": {
+  "bank": "extracted/audio/Sk8_Air_Flip_Tricks.abk",
+  "stream": 8
+ },
+ "Skate_Collisions_012.wav": {
+  "full": "Skate_Collisions_112.wav"
+ },
+ "Skate_Collisions_127.wav": {
+  "full": "Skate_Collisions_549.wav"
+ },
+ "Skate_Collisions_128.wav": {
+  "full": "Skate_Collisions_550.wav"
+ },
+ "Skate_Collisions_129.wav": {
+  "full": "Skate_Collisions_551.wav"
+ },
+ "Skate_Collisions_130.wav": {
+  "full": "Skate_Collisions_552.wav"
+ },
+ "Skate_Collisions_265.wav": {
+  "full": "Skate_Collisions_1017.wav"
+ },
+ "Skate_Collisions_266.wav": {
+  "full": "Skate_Collisions_1018.wav"
+ },
+ "WHEEL_SKID_BANK_45.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 45
+ },
+ "WHEEL_SKID_BANK_46.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 46
+ },
+ "WHEEL_SKID_BANK_65.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 65
+ },
+ "WHEEL_SKID_BANK_66.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 66
+ },
+ "WHEEL_SKID_BANK_67.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 67
+ },
+ "WHEEL_SKID_BANK_68.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 68
+ },
+ "WHEEL_SKID_BANK_69.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 69
+ },
+ "WHEEL_SKID_BANK_70.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 70
+ },
+ "WHEEL_SKID_BANK_71.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 71
+ },
+ "WHEEL_SKID_BANK_72.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 72
+ },
+ "WHEEL_SKID_BANK_75.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 75
+ },
+ "WHEEL_SKID_BANK_80.wav": {
+  "bank": "extracted/audio/WHEEL_SKID_BANK.abk",
+  "stream": 80
+ },
+ "sense_of_speed_3.wav": {
+  "bank": "extracted/audio/sense_of_speed.abk",
+  "stream": 3
+ },
+ "sense_of_speed_6.wav": {
+  "bank": "extracted/audio/sense_of_speed.abk",
+  "stream": 6
+ },
+ "sk8_menu_002.wav": {
+  "full": "sk8_menu_002.wav"
+ },
+ "sk8_menu_006.wav": {
+  "full": "sk8_menu_016.wav"
+ },
+ "sk8_menu_008.wav": {
+  "full": "sk8_menu_020.wav"
+ },
+ "sk8_menu_019.wav": {
+  "full": "sk8_menu_047.wav"
+ },
+ "sk8_menu_full_049.wav": {
+  "full": "sk8_menu_049.wav"
+ }
+}

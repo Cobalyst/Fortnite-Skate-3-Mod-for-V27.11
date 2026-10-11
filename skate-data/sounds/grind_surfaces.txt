@@ -1,0 +1,17 @@
+# Skate 3 grind surface tuning (tools/export_grind_surfaces.py)
+# gsurf <idx> <gain kind0..3> <scale kind0..3>  (missing field = 1.0, as the game's default)
+gsurf 0 0 0.73 1 1 1 1 1 0.5
+gsurf 1 1 0 0.77 1 1 1 1 1
+gsurf 2 1 0.34 0.73 1 0.86 1 1 0.9
+gsurf 3 0.53 0.31 0.64 1 0.89 1 0.98 0.5
+gsurf 4 0.36 0.56 0.66 1 0.84 1 1 0.5
+gsurf 5 0.73 0.48 0.81 1 0.86 1 1 0.8
+gsurf 6 0.53 0.55 0.83 0.7 0.86 1 0.94 0.85
+gsurf 7 0.39 0.16 0.48 1 0.84 1 1 0.5
+gsurf 8 0.38 0.03 0.5 1 0.89 1 1 0.7
+gsurf 9 0 0 0 1 0 0 0 0.5
+gsurf 10 0.5 0.25 1 1 0.6 1 1 1
+gsurf 11 1 1 0.47 1 0.86 1 1 0.5
+gsurf 12 1 0.5 1 1 0.78 1 1 0.8
+gsurf 13 0.65 0.34 0.63 0.75 0.65 1 1 1
+grindspeed 45

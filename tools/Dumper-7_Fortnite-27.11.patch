@@ -1,0 +1,258 @@
+diff --git a/Dumper/Engine/Private/Unreal/NameArray.cpp b/Dumper/Engine/Private/Unreal/NameArray.cpp
+index ff3ec91..c032e1c 100644
+--- a/Dumper/Engine/Private/Unreal/NameArray.cpp
++++ b/Dumper/Engine/Private/Unreal/NameArray.cpp
+@@ -3,6 +3,7 @@
+ 
+ #include "Unreal/ObjectArray.h"
+ #include "Unreal/NameArray.h"
++#include "Unreal/FortniteNameXor.h"
+ 
+ #include "Platform.h"
+ #include "Architecture.h"
+@@ -42,7 +43,7 @@ void FNameEntry::Init(const uint8_t* FirstChunkPtr, int64 NameEntryStringOffset)
+ 		constexpr int64 NoneStrLen = 0x4;
+ 		constexpr uint16 BytePropertyStrLen = 0xC;
+ 
+-		constexpr uint32 BytePropertyStartAsUint32 = 'etyB'; // "Byte" part of "ByteProperty"
++		constexpr uint32 BytePropertyStartAsUint32 = FortniteNameXor::Encoded<uint32>("Byte"); // "Byte" part of "ByteProperty" (as stored, ATLAS 27.11 obfuscation)
+ 
+ 		Off::FNameEntry::NamePool::StringOffset = NameEntryStringOffset;
+ 		Off::FNameEntry::NamePool::HeaderOffset = NameEntryStringOffset == 6 ? 4 : 0;
+@@ -97,9 +98,15 @@ void FNameEntry::Init(const uint8_t* FirstChunkPtr, int64 NameEntryStringOffset)
+ 			}
+ 
+ 			if (HeaderWithoutNumber & NameWideMask)
+-				return std::wstring(reinterpret_cast<const wchar_t*>(NameEntry + Off::FNameEntry::NamePool::StringOffset), NameLen);
++			{
++				std::wstring Wide(reinterpret_cast<const wchar_t*>(NameEntry + Off::FNameEntry::NamePool::StringOffset), NameLen);
++				FortniteNameXor::Decode(Wide.data(), NameLen);
++				return Wide;
++			}
+ 
+-			return UtfN::StringToWString(std::string(reinterpret_cast<const char*>(NameEntry + Off::FNameEntry::NamePool::StringOffset), NameLen));
++			std::string Ansi(reinterpret_cast<const char*>(NameEntry + Off::FNameEntry::NamePool::StringOffset), NameLen);
++			FortniteNameXor::Decode(Ansi.data(), NameLen);
++			return UtfN::StringToWString(Ansi);
+ 		};
+ 	}
+ 	else
+@@ -252,8 +259,8 @@ bool NameArray::InitializeNamePool(uint8_t* NamePool)
+ 	if (!bWasMaxChunkIndexFound)
+ 		return false;
+ 
+-	constexpr uint64 CoreUObjAsUint64 = 0x6A624F5565726F43; // little endian "jbOUeroC" ["/Script/CoreUObject"]
+-	constexpr uint32 NoneAsUint32 = 0x656E6F4E; // little endian "None"
++	constexpr uint64 CoreUObjAsUint64 = FortniteNameXor::Encoded<uint64>("CoreUObj"); // the "CoreUObject" name entry, as stored (ATLAS 27.11 obfuscation)
++	constexpr uint32 NoneAsUint32 = FortniteNameXor::Encoded<uint32>("None"); // "None", as stored (ATLAS 27.11 obfuscation)
+ 
+ 	uint8_t** ChunkPtr = reinterpret_cast<uint8_t**>(NamePool + Off::NameArray::ChunksStart);
+ 
+diff --git a/Dumper/Engine/Public/Unreal/FortniteNameXor.h b/Dumper/Engine/Public/Unreal/FortniteNameXor.h
+new file mode 100644
+index 0000000..538da2a
+--- /dev/null
++++ b/Dumper/Engine/Public/Unreal/FortniteNameXor.h
+@@ -0,0 +1,53 @@
++#pragma once
++
++#include <cstdint>
++
++/*
++* ATLAS Fortnite 27.11 stores FName strings XOR-obfuscated in the name pool.
++* The game decodes them in FNameEntry::AppendNameToString (exe+0xE70572 ansi, exe+0x400DE31 wide):
++*     State = 0x2A; for each char i: State |= i; Char ^= ~State; State <<= 1;
++* The key depends only on the character position, so encoding and decoding are the same operation.
++*/
++namespace FortniteNameXor
++{
++	inline constexpr bool bEnabled = true;
++
++	template<typename CharType>
++	inline void Decode(CharType* Str, int32_t Len)
++	{
++		if constexpr (!bEnabled)
++			return;
++
++		uint32_t State = 0x2A;
++		for (int32_t i = 0; i < Len; i++)
++		{
++			State |= static_cast<uint32_t>(i);
++			Str[i] = static_cast<CharType>(Str[i] ^ static_cast<CharType>(~State));
++			State <<= 1;
++		}
++	}
++
++	/* Key byte for an ansi character at string position Pos */
++	constexpr uint8_t KeyAt(int32_t Pos)
++	{
++		uint32_t State = 0x2A;
++		uint8_t Key = 0;
++		for (int32_t i = 0; i <= Pos; i++)
++		{
++			State |= static_cast<uint32_t>(i);
++			Key = static_cast<uint8_t>(~State);
++			State <<= 1;
++		}
++		return bEnabled ? Key : 0;
++	}
++
++	/* Little-endian integer of N chars of Str as they appear encoded in memory, Str starting at string position 0 */
++	template<typename IntType>
++	constexpr IntType Encoded(const char* Str)
++	{
++		IntType Out = 0;
++		for (int32_t i = 0; i < static_cast<int32_t>(sizeof(IntType)); i++)
++			Out |= static_cast<IntType>(static_cast<uint8_t>(Str[i]) ^ KeyAt(i)) << (i * 8);
++		return Out;
++	}
++}
+diff --git a/Dumper/Generator/Private/Generators/CppGenerator.cpp b/Dumper/Generator/Private/Generators/CppGenerator.cpp
+index 5dc9f22..be9f44c 100644
+--- a/Dumper/Generator/Private/Generators/CppGenerator.cpp
++++ b/Dumper/Generator/Private/Generators/CppGenerator.cpp
+@@ -4216,7 +4216,7 @@ R"({
+ 				.CustomComment = "",
+ 				.ReturnType = "int32", .NameWithParams = "GetTypedId()", .Body = 
+ R"({
+-	return reinterpret_cast<int32>(Id);
++	return *reinterpret_cast<const int32*>(Id);
+ })",
+ 				.bIsStatic = false, .bIsConst = true, .bIsBodyInline = true
+ 			},
+@@ -4224,7 +4224,7 @@ R"({
+ 				.CustomComment = "",
+ 				.ReturnType = "uint32", .NameWithParams = "GetNumber()", .Body =
+ R"({
+-	return reinterpret_cast<uint32>(Number);
++	return *reinterpret_cast<const uint32*>(Number);
+ })",
+ 				.bIsStatic = false, .bIsConst = true, .bIsBodyInline = true
+ 			},
+@@ -4236,7 +4236,7 @@ R"({
+ 			FStringData.Properties.push_back(
+ 				PredefinedMember{
+ 					.Comment = "NOT AUTO-GENERATED PROPERTY",
+-					.Type = "FNumberedData", .Name = "AnsiName", .Offset = 0x10, .Size = FNumberedDataSize, .ArrayDim = 0x400, .Alignment = alignof(char),
++					.Type = "FNumberedData", .Name = "NumberedName", .Offset = 0x0, .Size = FNumberedDataSize, .ArrayDim = 0x1, .Alignment = 0x1,
+ 					.bIsStatic = false, .bIsZeroSizeMember = false, .bIsBitField = false, .BitIndex = 0xFF
+ 				}
+ 			);
+@@ -4301,12 +4301,27 @@ R"({
+ 				.CustomComment = "",
+ 				.ReturnType = "std::string", .NameWithParams = "GetString()", .Body =
+ R"({
++	// ATLAS Fortnite 27.11 stores names XOR-obfuscated (game decodes at exe+0xE70572)
++	uint32 State = 0x2A;
++
+ 	if (IsWide())
+ 	{
+-		return UtfN::Utf16StringToUtf8String<std::string>(Name.WideName, Header.Len);
++		std::wstring Wide(Name.WideName, Header.Len);
++		for (int32 i = 0; i < Header.Len; i++, State <<= 1)
++		{
++			State |= i;
++			Wide[i] ^= static_cast<wchar_t>(~State);
++		}
++		return UtfN::Utf16StringToUtf8String<std::string>(Wide.c_str(), Header.Len);
+ 	}
+ 
+-	return std::string(Name.AnsiName, Header.Len);
++	std::string Ansi(Name.AnsiName, Header.Len);
++	for (int32 i = 0; i < Header.Len; i++, State <<= 1)
++	{
++		State |= i;
++		Ansi[i] ^= static_cast<char>(~State);
++	}
++	return Ansi;
+ })",
+ 				.bIsStatic = false, .bIsConst = true, .bIsBodyInline = true
+ 			},
+@@ -4543,15 +4558,18 @@ R"({
+ 
+ 	const FNameEntry* Entry = FName::GNames->GetEntryByIndex(GetDisplayIndex());
+ 
+-	if (Entry->Header.Length == 0)
+-	{{
+-		if (Entry->Number > 0)
+-			return FName::GNames->GetEntryByIndex(Entry->NumberedName.Id)->GetString() + "_" + std::to_string(Entry->Number - 1);
++	if (Entry->Header.Len == 0)
++	{
++		const uint32 OutlineNumber = Entry->Name.NumberedName.GetNumber();
++		const std::string BaseName = FName::GNames->GetEntryByIndex(Entry->Name.NumberedName.GetTypedId())->GetString();
+ 
+-		return FName::GNames->GetEntryByIndex(Entry->NumberedName.Id)->GetString();
+-	}}
++		if (OutlineNumber > 0)
++			return BaseName + "_" + std::to_string(OutlineNumber - 1);
++
++		return BaseName;
++	}
+ 
+-	return Entry.GetString();
++	return Entry->GetString();
+ }
+ )";
+ 
+diff --git a/Dumper/Generator/Private/Generators/Generator.cpp b/Dumper/Generator/Private/Generators/Generator.cpp
+index 065e27a..1bcba54 100644
+--- a/Dumper/Generator/Private/Generators/Generator.cpp
++++ b/Dumper/Generator/Private/Generators/Generator.cpp
+@@ -44,7 +44,8 @@ void Generator::InitEngineCore()
+ 
+ 	ObjectArray::Init();
+ 
+-	CALL_PLATFORM_SPECIFIC_FUNCTION(FName::Init);
++	// Fortnite 27.11: auto-detected AppendString crashes, so read names from GNames directly
++	CALL_PLATFORM_SPECIFIC_FUNCTION(FName::Init, /*bForceGNames*/ true);
+ 
+ 	Off::Init();
+ 	PropertySizes::Init();
+diff --git a/Dumper/Settings.cpp b/Dumper/Settings.cpp
+index 2bd4e8c..4991e96 100644
+--- a/Dumper/Settings.cpp
++++ b/Dumper/Settings.cpp
+@@ -141,10 +141,10 @@ void Settings::Config::Load()
+ 
+ 	// Check for output path override
+ 	char SDKPath[256] = {};
+-	GetPrivateProfileStringA("Settings", "SDKGenerationPath", "C:/Dumper-7", SDKPath, sizeof(SDKPath), ConfigPath);
++	GetPrivateProfileStringA("Settings", "SDKGenerationPath", "C:/Dumper-7", SDKPath, sizeof(SDKPath), ConfigPath);
+ 
+ 	// Path issues are generally resolved during generation but its better to catch during config load
+-	if (strcmp(SDKPath, "C:/Dumper-7") != 0)
++	if (strcmp(SDKPath, "C:/Dumper-7") != 0)
+ 	{
+ 		try
+ 		{
+@@ -172,7 +172,7 @@ void Settings::Config::Load()
+ 		{
+ 			std::cerr << "Invalid SDK Generation Path: \n";
+ 			std::cerr << fe.what() << std::endl;
+-			std::cerr << "Falling back to default path: C:/Dumper-7 \n";
++			std::cerr << "Falling back to default path: C:/Dumper-7 \n";
+ 		}
+ 	}
+ 	
+diff --git a/Dumper/Settings.h b/Dumper/Settings.h
+index cc765da..7de4639 100644
+--- a/Dumper/Settings.h
++++ b/Dumper/Settings.h
+@@ -15,7 +15,7 @@ namespace Settings
+ 		constexpr const char* DefaultModuleName = nullptr;
+ 	}
+   
+-	inline constexpr const char* GlobalConfigPath = "C:/Dumper-7/Dumper-7.ini";
++	inline constexpr const char* GlobalConfigPath = "C:/Dumper-7/Dumper-7.ini";
+ 
+ 	namespace Config
+ 	{
+@@ -42,7 +42,7 @@ namespace Settings
+ 		inline std::string GameName = "";
+ 		inline std::string GameVersion = "";
+ 
+-		inline std::string SDKGenerationPath = "C:/Dumper-7";
++		inline std::string SDKGenerationPath = "C:/Dumper-7";
+ 
+ 		/* Whether to use a timestamp suffix for backup folders instead of "_OLD", allowing unlimited backups */
+ 		inline bool bCreateUniqueBackups = false;

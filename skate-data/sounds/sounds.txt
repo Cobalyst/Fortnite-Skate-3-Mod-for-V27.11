@@ -1,0 +1,99 @@
+folder raw
+volume 0.4
+roll PatchBank_Rolling_Surfaces_5.wav PatchBank_Rolling_Surfaces_2.wav PatchBank_Rolling_Surfaces_3.wav
+rattle Rolling_Rattles_14.wav Rolling_Rattles_10.wav Rolling_Rattles_13.wav
+wind sense_of_speed_6.wav sense_of_speed_3.wav
+grind GRINDS_52.wav GRINDS_53.wav GRINDS_80.wav GRINDS_10.wav
+powerslide WHEEL_SKID_BANK_65.wav WHEEL_SKID_BANK_66.wav WHEEL_SKID_BANK_69.wav WHEEL_SKID_BANK_70.wav WHEEL_SKID_BANK_71.wav WHEEL_SKID_BANK_68.wav WHEEL_SKID_BANK_72.wav WHEEL_SKID_BANK_67.wav WHEEL_SKID_BANK_75.wav WHEEL_SKID_BANK_80.wav WHEEL_SKID_BANK_46.wav WHEEL_SKID_BANK_45.wav
+seam Seams_Bank_10.wav Seams_Bank_180.wav Seams_Bank_181.wav Seams_Bank_182.wav Seams_Bank_183.wav Seams_Bank_186.wav Seams_Bank_19.wav Seams_Bank_191.wav Seams_Bank_194.wav Seams_Bank_195.wav Seams_Bank_198.wav Seams_Bank_203.wav Seams_Bank_204.wav Seams_Bank_205.wav Seams_Bank_206.wav Seams_Bank_207.wav
+# board on concrete: Skate_Collisions board-impact grid (groups 1112-1120: deck slap 537-552, board body 530-539, trucks 93-101)
+splc pop Skate_Collisions 1.0 1115
+splc land Skate_Collisions 1.0 1118
+splc land_hard Skate_Collisions 1.0 1120
+slam Skate_Collisions_266.wav Skate_Collisions_265.wav Skate_Collisions_012.wav
+flip Sk8_Air_Flip_Tricks_16.wav Sk8_Air_Flip_Tricks_15.wav Sk8_Air_Flip_Tricks_17.wav Sk8_Air_Flip_Tricks_14.wav Sk8_Air_Flip_Tricks_8.wav Sk8_Air_Flip_Tricks_12.wav Sk8_Air_Flip_Tricks_11.wav Sk8_Air_Flip_Tricks_7.wav
+hud_trick sk8_menu_006.wav sk8_menu_008.wav
+hud_line sk8_menu_002.wav sk8_menu_019.wav
+hud_bail sk8_menu_019.wav
+catch Skate_Collisions_129.wav Skate_Collisions_127.wav Skate_Collisions_128.wav Skate_Collisions_130.wav
+mult_3 sk8_menu_full_049.wav
+mult_2
+mult_1.5
+# Hall of Meat front-end sounds = Skate 3 'fe' entries (bank, event, volume as in the game):
+# the HUD movie's transition / score_red, and hom_<part> when the x-ray skeleton first shows
+# (bone -> part per FUN_82763CB0; hom_groin has no sound).
+splc hom_transition sk8_menu 0.78 234
+splc hom_score_red sk8_menu 0.84 286
+splc hom_neck HOM_Set_1 0.5 24
+splc hom_lefthand HOM_Set_1 0.5 24
+splc hom_leftforearm HOM_Set_1 0.5 24
+splc hom_leftarm HOM_Set_1 0.5 24
+splc hom_leftshoulder HOM_Set_1 0.5 24
+splc hom_righthand HOM_Set_1 0.5 24
+splc hom_rightforearm HOM_Set_1 0.5 24
+splc hom_rightarm HOM_Set_1 0.5 24
+splc hom_rightshoulder HOM_Set_1 0.5 24
+splc hom_upperbody HOM_Set_1 1.0 26
+splc hom_lefttoe HOM_Set_1 0.5 24
+splc hom_leftfoot HOM_Set_1 0.5 24
+splc hom_leftcalf HOM_Set_1 0.5 24
+splc hom_leftupleg HOM_Set_1 0.5 25
+splc hom_righttoe HOM_Set_1 0.5 24
+splc hom_rightfoot HOM_Set_1 0.5 24
+splc hom_rightcalf HOM_Set_1 0.5 24
+splc hom_rightupleg HOM_Set_1 0.5 25
+splc hom_hipsleft HOM_Set_1 0.5 25
+splc hom_skull HOM_Set_1 0.5 24
+# Body impacts (skater's head / torso / arms / legs hitting something): the aud_material records'
+# Skate_Collisions groups per impact class (light, medium, heavy). Volume and pitch come from the
+# records too (Audio.cpp BodyImpacts), so the gain here stays 1.
+splc body_head_light Skate_Collisions 1.0 952
+splc body_head_medium Skate_Collisions 1.0 953
+splc body_head_heavy Skate_Collisions 1.0 1032
+splc body_torso_light Skate_Collisions 1.0 949
+splc body_torso_medium Skate_Collisions 1.0 950
+splc body_torso_heavy Skate_Collisions 1.0 951
+splc body_arm_light Skate_Collisions 1.0 956
+splc body_arm_medium Skate_Collisions 1.0 957
+splc body_arm_heavy Skate_Collisions 1.0 1030
+splc body_leg_light Skate_Collisions 1.0 947
+splc body_leg_medium Skate_Collisions 1.0 948
+splc body_leg_heavy Skate_Collisions 1.0 1031
+
+# Object dropper front-end sounds = Skate 3 'fe' entries (sk8_menu event, volume as in the game).
+splc core_a_button sk8_menu 0.65 206
+splc core_error sk8_menu 0.5 209
+splc core_b_button sk8_menu 0.7 207
+splc core_x_button sk8_menu 0.5 208
+splc core_y_button sk8_menu 0.5 263
+splc core_nav_left sk8_menu 0.5 204
+splc core_nav_right sk8_menu 0.5 205
+splc core_popup sk8_menu 1.09 215
+splc sp_catalog sk8_menu 1 301
+splc sp_catalog_select sk8_menu 1 306
+splc sp_catalog_horz_scroll sk8_menu 1 305
+splc sp_catalog_vert_scroll sk8_menu 1 304
+splc sp_object_drop sk8_menu 1 308
+splc sp_object_dropper sk8_menu 1 303
+splc sp_object_dropper_enter sk8_menu 0.75 344
+splc sp_object_dropper_exit sk8_menu 0.75 345
+splc sp_object_cancel sk8_menu 1 319
+splc sp_object_pickup sk8_menu 1 309
+splc sp_object_delete sk8_menu 0.6 310
+splc sp_duplicate sk8_menu 0.75 358
+splc sp_invalid_placement sk8_menu 1 320
+splc sp_reset_object sk8_menu 1 354
+splc sp_l1_options sk8_menu 1 356
+splc sp_l2_options sk8_menu 1 307
+splc sp_r1_options sk8_menu 1 357
+splc sp_r2_options sk8_menu 1 307
+splc sp_group_select sk8_menu 0.75 359
+splc sp_properties sk8_menu 1 302
+splc online_flicker sk8_menu 0.44 222
+splc core_nav_down sk8_menu 0.4 203
+splc core_nav_up sk8_menu 0.5 202
+# Action overlay (holding a prop on foot): Skate 3 'fe' entries played by the HUD state 82648B48/82648800.
+splc sp_add_to_marker sk8_menu 0.47 206
+splc sp_remove_from_marker sk8_menu 0.5 207
+splc sp_upright_object sk8_menu 1 355
+splc sp_reset_object sk8_menu 1 354
